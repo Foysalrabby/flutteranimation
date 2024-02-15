@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animation/details.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -43,51 +44,40 @@ class _MyHomePageState extends State<MyHomePage> {
     // });
   }
 
-  void reload() {
-    setState(() {
-      if(isfirst){
-          isfirst = false;   
-      }else{
-        isfirst = true;
-      }
-     
-    });
-  }
+  // void reload() {
+  //   setState(() {
+  //     if(isfirst){
+  //         isfirst = false;
+  //     }else{
+  //       isfirst = true;
+  //     }
+
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedCrossFade(
-                duration: Duration(seconds: 2),
-                firstChild: Container(
-                  width: 200,
-                  height: 200,
-                  color: Colors.amberAccent,
-                ),
-                secondChild: Image.asset(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Container(
+        child: Center(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>Detailspage()));
+            },
+            child: Hero(
+                tag: "background",
+                child: Image.asset(
                   "assets/images/badminton.png",
-                  width: 100,
-                  height: 100,
-                ),
-                crossFadeState: isfirst
-                    ? CrossFadeState.showSecond
-                    : CrossFadeState.showFirst,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    reload();
-                  },
-                  child: Text("click"))
-            ],
+                  height: 150,
+                  width: 150,
+                )),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
