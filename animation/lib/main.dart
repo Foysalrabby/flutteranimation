@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-      
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -25,7 +24,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-
   final String title;
 
   @override
@@ -33,38 +31,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
-  
+  var fwidth = 200.0;
+  var fheight = 100.0;
+  bool flag = true;
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      appBar: AppBar(
-        
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-           children: [
-              AnimatedContainer(
-                width: 200,
-                height: 100,
-                color: Color.fromARGB(255, 7, 187, 31),
-                duration: Duration(seconds: 2)),
-                ElevatedButton(onPressed: (){
-      
-                }, child: Text("click"))
-      
-           ],
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(widget.title),
         ),
-      )
-      
-       
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedContainer(
+                  width: fwidth,
+                  height: fheight,
+                  color: Color.fromARGB(255, 7, 187, 31),
+                  duration: Duration(seconds: 2)),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (flag) {
+                        fwidth = 100.0;
+                        fheight = 200.0;
+                        flag = false;
+                      } else {
+                        fwidth = 200.0;
+                        fheight = 100.0;
+                        flag = true;
+                      }
+                    });
+                  },
+                  child: Text("click"))
+            ],
+          ),
+        ));
   }
 }
