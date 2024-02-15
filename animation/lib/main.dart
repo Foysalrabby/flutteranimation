@@ -31,12 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var fwidth = 200.0;
-  var fheight = 100.0;
-  var myopacity = 1.0;
-  bool flag = true;
-  var bgcolor = Colors.blue;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,37 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedOpacity(
-                opacity: myopacity,
-                curve: Curves.bounceIn,
-                duration: Duration(seconds: 2),
-                child: Container(
-                  width: fwidth,
-                  height: fheight,
-                  color: bgcolor,
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                       
-                       if (flag) {
-                        myopacity = 0.0;
-                         flag = false;
-                       } else {
-                     myopacity = 1.0;
-
-                     flag = true;
-                      }
-                    });
-                  },
-                  child: Text("click"))
-            ],
-          ),
-        ));
+        body: Center(child:Container(
+          width: 100,
+          height: 100,
+          color: Colors.amber,
+          child:Image.asset("assets/images/badminton.png"),))
+        
+        
+        );
   }
 }
