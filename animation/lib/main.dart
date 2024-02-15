@@ -34,7 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   var fwidth = 200.0;
   var fheight = 100.0;
   bool flag = true;
-  var bgcolor = Colors.blue;
+  // var bgcolor = Colors.blue;
+  Decoration mydecolration =
+      BoxDecoration(borderRadius: BorderRadius.circular(2), color: Colors.blue);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
               AnimatedContainer(
                   width: fwidth,
                   height: fheight,
-                  color: bgcolor,
+                  curve: Curves.bounceInOut,  //kemon vabe jabe
+                  decoration: mydecolration,
                   duration: Duration(seconds: 2)),
               ElevatedButton(
                   onPressed: () {
@@ -58,12 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (flag) {
                         fwidth = 100.0;
                         fheight = 200.0;
-                        bgcolor = Colors.amber;
+                        mydecolration = BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.amber
+                            );
                         flag = false;
                       } else {
                         fwidth = 200.0;
                         fheight = 100.0;
-                        bgcolor = Colors.brown;
+                       mydecolration = BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                             color: Color.fromARGB(255, 56, 7, 75)
+                            );
                         flag = true;
                       }
                     });
