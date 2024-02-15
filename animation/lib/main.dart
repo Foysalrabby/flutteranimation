@@ -38,17 +38,21 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      reload();
-    });
-   
+    // Timer(Duration(seconds: 3), () {
+    //   reload();
+    // });
   }
-   void reload() {
+
+  void reload() {
     setState(() {
-      isfirst = false;
+      if(isfirst){
+          isfirst = false;   
+      }else{
+        isfirst = true;
+      }
+     
     });
-      
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +62,31 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: Center(
-          child: AnimatedCrossFade(
-            duration: Duration(seconds: 2),
-            firstChild: Container(
-              width: 200,
-              height: 200,
-              color: Colors.amberAccent,
-            ),
-            secondChild: Image.asset(
-              "assets/images/badminton.png",
-              width: 100,
-              height: 100,
-            ),
-            crossFadeState:isfirst ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedCrossFade(
+                duration: Duration(seconds: 2),
+                firstChild: Container(
+                  width: 200,
+                  height: 200,
+                  color: Colors.amberAccent,
+                ),
+                secondChild: Image.asset(
+                  "assets/images/badminton.png",
+                  width: 100,
+                  height: 100,
+                ),
+                crossFadeState: isfirst
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    reload();
+                  },
+                  child: Text("click"))
+            ],
           ),
         ));
   }
