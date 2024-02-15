@@ -33,10 +33,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var fwidth = 200.0;
   var fheight = 100.0;
+  var myopacity = 1.0;
   bool flag = true;
-  // var bgcolor = Colors.blue;
-  Decoration mydecolration =
-      BoxDecoration(borderRadius: BorderRadius.circular(2), color: Colors.blue);
+  var bgcolor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
@@ -49,31 +48,27 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AnimatedContainer(
+              AnimatedOpacity(
+                opacity: myopacity,
+                curve: Curves.bounceIn,
+                duration: Duration(seconds: 2),
+                child: Container(
                   width: fwidth,
                   height: fheight,
-                  curve: Curves.bounceInOut,  //kemon vabe jabe
-                  decoration: mydecolration,
-                  duration: Duration(seconds: 2)),
+                  color: bgcolor,
+                ),
+              ),
               ElevatedButton(
                   onPressed: () {
                     setState(() {
-                      if (flag) {
-                        fwidth = 100.0;
-                        fheight = 200.0;
-                        mydecolration = BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: Colors.amber
-                            );
-                        flag = false;
-                      } else {
-                        fwidth = 200.0;
-                        fheight = 100.0;
-                       mydecolration = BoxDecoration(
-                            borderRadius: BorderRadius.circular(2),
-                             color: Color.fromARGB(255, 56, 7, 75)
-                            );
-                        flag = true;
+                       
+                       if (flag) {
+                        myopacity = 0.0;
+                         flag = false;
+                       } else {
+                     myopacity = 1.0;
+
+                     flag = true;
                       }
                     });
                   },
