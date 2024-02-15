@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var fwidth = 200.0;
   var fheight = 100.0;
   bool flag = true;
+  var bgcolor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
               AnimatedContainer(
                   width: fwidth,
                   height: fheight,
-                  color: Color.fromARGB(255, 7, 187, 31),
+                  color: bgcolor,
                   duration: Duration(seconds: 2)),
               ElevatedButton(
                   onPressed: () {
@@ -57,10 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (flag) {
                         fwidth = 100.0;
                         fheight = 200.0;
+                        bgcolor = Colors.amber;
                         flag = false;
                       } else {
                         fwidth = 200.0;
                         fheight = 100.0;
+                        bgcolor = Colors.brown;
                         flag = true;
                       }
                     });
